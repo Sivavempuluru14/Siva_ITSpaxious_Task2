@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="home-container">
+
+        <h1>🎉 Welcome Home</h1>
+
+        <p id="username"></p>
+
+        <button onclick="logout()">Logout</button>
+
+    </div>
+
+    <script>
+
+        // Check logged in user
+        let user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+        if(user){
+            document.getElementById("username").innerHTML =
+                "Welcome, <b>" + user.name + "</b>!";
+        }else{
+            window.location.href = "login.html";
+        }
+
+        // Logout Function
+        function logout(){
+
+            localStorage.removeItem("loggedInUser");
+
+            alert("Logged Out Successfully!");
+
+            window.location.href = "login.html";
+
+        }
+
+    </script>
+
+</body>
+</html>
