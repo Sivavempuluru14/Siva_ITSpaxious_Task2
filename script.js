@@ -101,16 +101,23 @@ function login() {
     // Get registered users
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    // Check email & password
-    let user = users.find(u => u.email === email && u.password === password);
+    // Check if email is registered
+    let registeredUser = users.find(u => u.email === email);
 
-    if (user) {
+    if (!registeredUser) {
+        msg.style.color = "red";
+        msg.innerHTML = "Email is not registered. Please register first.";
+        return;
+    }
+
+    // Check password
+    if (registeredUser.password === password) {
 
         msg.style.color = "green";
         msg.innerHTML = "Login Successful!";
 
         // Store logged in user
-        localStorage.setItem("loggedInUser", JSON.stringify(user));
+        localStorage.setItem("loggedInUser", JSON.stringify(registeredUser));
 
         // Redirect to Home Page
         setTimeout(() => {
@@ -120,7 +127,7 @@ function login() {
     } else {
 
         msg.style.color = "red";
-        msg.innerHTML = "Invalid Email or Password";
+        msg.innerHTML = "Incorrect Password.";
 
     }
 }
