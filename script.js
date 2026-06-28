@@ -101,12 +101,12 @@ function login() {
     // Get registered users
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    // Check if email is registered
+    // Check whether email is registered
     let registeredUser = users.find(u => u.email === email);
 
     if (!registeredUser) {
         msg.style.color = "red";
-        msg.innerHTML = "Email is not registered. Please register first.";
+        msg.innerHTML = "Email is not registered. Please register first";
         return;
     }
 
@@ -127,7 +127,7 @@ function login() {
     } else {
 
         msg.style.color = "red";
-        msg.innerHTML = "Incorrect Password.";
+        msg.innerHTML = "Incorrect Password";
 
     }
 }
